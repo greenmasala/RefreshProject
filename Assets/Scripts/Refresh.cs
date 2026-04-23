@@ -22,7 +22,12 @@ public class Refresh : MonoBehaviour
             return int.Parse(numberPart);
         }).ToArray();
 
-        Columns2 = GameObject.FindGameObjectsWithTag("Column2");
+        Columns2 = GameObject.FindGameObjectsWithTag("Column2").OrderByDescending(o =>
+        {
+            var numberPart = new string(o.name.Where(char.IsDigit).ToArray());
+            return int.Parse(numberPart);
+        }).ToArray(); 
+
         foreach (GameObject column2 in Columns2)
         {
             column2.SetActive(false);
@@ -35,37 +40,32 @@ public class Refresh : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
            hasRefreshed = !hasRefreshed;
-            Debug.Log("hasRefreshed" + hasRefreshed);
+           Debug.Log("hasRefreshed" + hasRefreshed);
            
-                if (Refresh1 != null)
-                {
-                    StopCoroutine(Refresh1);
-                    fullyRefreshed = false;
-                    Debug.Log("Stopped midway");
-                }
-                Refresh1 = StartCoroutine(Refreshing());
-            
-            //else if (hasRefreshed)
-            //{
-
-            //}
+           if (Refresh1 != null)
+           {
+               StopCoroutine(Refresh1);
+               fullyRefreshed = false;
+               Debug.Log("Stopped midway");
+           }
+           Refresh1 = StartCoroutine(Refreshing());
         }
     }
 
     IEnumerator Refreshing()
     {
-        while (currentColumn < Columns.Length)
+        while (currentColumn < Columns.Length - 1)
         {
             if (hasRefreshed)
             {
                 Columns[currentColumn].SetActive(!Columns[currentColumn].activeInHierarchy);
                 Debug.Log("current column: " + currentColumn);
-                currentColumn++;
+                currentColumn = Mathf.Clamp(currentColumn + 1, 0, Columns.Length);
             }
             else 
             {
                 Debug.Log("current column returning: " + currentColumn);
-                currentColumn = Mathf.Clamp(currentColumn - 1, 0, 18);
+                currentColumn = Mathf.Clamp(currentColumn - 1, 0, Columns.Length);
                 Columns[currentColumn].SetActive(!Columns[currentColumn].activeInHierarchy);
 
                 if (currentColumn == 0)
@@ -97,13 +97,12 @@ public class Refresh : MonoBehaviour
         while (currentColumn > -1 & !hasRefreshed)
         {
             Debug.Log("current column returning: " + currentColumn);
+            currentColumn = Mathf.Clamp(currentColumn - 1, 0, Columns.Length);
             Columns[currentColumn].SetActive(!Columns[currentColumn].activeInHierarchy);
-            currentColumn--;
 
-            if (currentColumn < 0)
+            if (currentColumn == 0)
             {
                 Debug.Log("done returning stopped at: " + currentColumn);
-                currentColumn = 0;
                 yield break;
             }
 
@@ -112,8 +111,6 @@ public class Refresh : MonoBehaviour
         }
 
         Debug.Log("done stopped at: " + currentColumn);
-        fullyRefreshed = true;
-        currentColumn = Mathf.Clamp(currentColumn, 0, 18);
         yield break;
     }
 
