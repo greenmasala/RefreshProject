@@ -6,11 +6,14 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] int speed = 10;
     [SerializeField] int jumpForce = 10;
+    [SerializeField] int jumpCount = 2;
+    int maxJumpCount;
     bool onGround;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        maxJumpCount = jumpCount;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -22,7 +25,14 @@ public class Player : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) & onGround)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            Vector2 currentVelocity = rb.velocity;
+            rb.velocity = new Vector2(currentVelocity.x, jumpForce);
+            jumpCount--;
+        }
+
+        if (jumpCount <= 0)
+        {
+            jumpCount = 0;
             onGround = false;
         }
     }
@@ -31,6 +41,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            jumpCount = maxJumpCount;
             onGround = true;
         }
     }

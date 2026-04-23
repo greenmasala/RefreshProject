@@ -1,8 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Settings: MonoBehaviour
