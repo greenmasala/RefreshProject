@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -8,13 +9,14 @@ using UnityEngine.UIElements;
 public class Refresh : MonoBehaviour
 {
     public float RefreshDelay = 0.5f;
+    public int RefreshCount;
     public GameObject[] Columns;
     public GameObject[] Columns2;
-    Coroutine Refresh1;
+    public TextMeshProUGUI RefreshCountText;
+    Coroutine refreshCoroutine;
     bool hasRefreshed;
-    bool fullyRefreshed;
-    public int currentColumn;
-    public int currentColumn2;
+    int currentColumn;
+    int currentColumn2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +33,8 @@ public class Refresh : MonoBehaviour
             return int.Parse(numberPart);
         }).ToArray(); 
 
+        RefreshCountText.text = RefreshCount.ToString();
+
         foreach (GameObject column2 in Columns2)
         {
             column2.SetActive(false);
@@ -40,18 +44,19 @@ public class Refresh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) & RefreshCount > 0)
         {
+           RefreshCount--;
+           RefreshCountText.text = RefreshCount.ToString();
            hasRefreshed = !hasRefreshed;
            Debug.Log("hasRefreshed" + hasRefreshed);
            
-           if (Refresh1 != null)
+           if (refreshCoroutine != null)
            {
-               StopCoroutine(Refresh1);
-               fullyRefreshed = false;
+               StopCoroutine(refreshCoroutine);
                Debug.Log("Stopped midway");
            }
-           Refresh1 = StartCoroutine(Refreshing());
+           refreshCoroutine = StartCoroutine(Refreshing());
         }
     }
 
@@ -127,5 +132,4 @@ public class Refresh : MonoBehaviour
         Debug.Log("done stopped at: " + currentColumn);
         yield break;
     }
-
 }
