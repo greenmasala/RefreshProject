@@ -86,16 +86,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelID);
     }
 
-    public void OpenSettings()
+    public void Settings()
     {
-        SettingsMenu.gameObject.SetActive(true);
-        PauseMenu.gameObject.SetActive(false);
-    }
-
-    public void CloseSettings()
-    {
-        SettingsMenu.gameObject.SetActive(false);
-        PauseMenu.gameObject.SetActive(true);
+        SettingsMenu.gameObject.SetActive(!SettingsMenu.activeInHierarchy);
+        PauseMenu.gameObject.SetActive(!PauseMenu.activeInHierarchy);
     }
 
     //public void OpenCredits()

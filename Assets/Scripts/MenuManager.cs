@@ -4,27 +4,19 @@ using UnityEngine.UIElements;
 
 public class MenuManager : MonoBehaviour
 {
+    public GameObject MainMenu;
     public GameObject SettingsMenu;
     public GameObject LevelSelect;
 
-    public void OpenLevelSelect()
+    public void LevelSelectMenu()
     {
-        LevelSelect.SetActive(true);
+        LevelSelect.SetActive(!LevelSelect.activeInHierarchy);
+        MainMenu.SetActive(!MainMenu.activeInHierarchy);
     }
 
-    public void CloseLevelSelect()
+    public void Settings()
     {
-        LevelSelect.SetActive(false);
-    }
-
-    public void OpenSettings()
-    {
-        SettingsMenu.gameObject.SetActive(true);
-    }
-
-    public void CloseSettings()
-    {
-        SettingsMenu.gameObject.SetActive(false);
+        SettingsMenu.gameObject.SetActive(!SettingsMenu.activeInHierarchy);
     }
 
     public void LoadLevel(int levelID)

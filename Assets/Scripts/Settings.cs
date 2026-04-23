@@ -36,7 +36,7 @@ public class Settings: MonoBehaviour
         var percentage = (vol / 1) * 100;
         MasterVolVal.text = percentage.ToString("F0");
         PlayerPrefs.SetFloat("MasterVol", vol);
-        MasterSlider.value = PlayerPrefs.GetFloat("MasterVol");
+        //MasterSlider.value = PlayerPrefs.GetFloat("MasterVol");
     }
     public void SetMusicVol(float vol)
     {
@@ -44,7 +44,7 @@ public class Settings: MonoBehaviour
         var percentage = (vol / 1) * 100;
         MusicVolVal.text = percentage.ToString("F0");
         PlayerPrefs.SetFloat("MusicVol", vol);
-        MusicSlider.value = PlayerPrefs.GetFloat("MusicVol");
+        //MusicSlider.value = PlayerPrefs.GetFloat("MusicVol");
     }
 
     public void SetSFXVol(float vol)
@@ -53,7 +53,7 @@ public class Settings: MonoBehaviour
         var percentage = (vol / 1) * 100;
         SFXVolVal.text = percentage.ToString("F0");
         PlayerPrefs.SetFloat("SFXVol", vol);
-        SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
+        //SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
     }
 
     public void LoadSettings()
