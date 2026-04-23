@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Refresh : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class Refresh : MonoBehaviour
     bool hasRefreshed;
     bool fullyRefreshed;
     public int currentColumn;
+    public int currentColumn2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -61,12 +64,20 @@ public class Refresh : MonoBehaviour
                 Columns[currentColumn].SetActive(!Columns[currentColumn].activeInHierarchy);
                 Debug.Log("current column: " + currentColumn);
                 currentColumn = Mathf.Clamp(currentColumn + 1, 0, Columns.Length);
+
+                Columns2[currentColumn2].SetActive(!Columns2[currentColumn2].activeInHierarchy);
+                Debug.Log("current column 2: " + currentColumn2);
+                currentColumn2 = Mathf.Clamp(currentColumn2 + 1, 0, Columns.Length);
             }
             else 
             {
                 Debug.Log("current column returning: " + currentColumn);
                 currentColumn = Mathf.Clamp(currentColumn - 1, 0, Columns.Length);
                 Columns[currentColumn].SetActive(!Columns[currentColumn].activeInHierarchy);
+
+                Debug.Log("current column 2 returning: " + currentColumn);
+                currentColumn2 = Mathf.Clamp(currentColumn2 - 1, 0, Columns.Length);
+                Columns2[currentColumn2].SetActive(!Columns2[currentColumn2].activeInHierarchy);
 
                 if (currentColumn == 0)
                 {
@@ -91,7 +102,6 @@ public class Refresh : MonoBehaviour
                 //}
             }
             yield return new WaitForSeconds(RefreshDelay);
-            Debug.Log("run");
         }
 
         while (currentColumn > -1 & !hasRefreshed)
@@ -99,6 +109,10 @@ public class Refresh : MonoBehaviour
             Debug.Log("current column returning: " + currentColumn);
             currentColumn = Mathf.Clamp(currentColumn - 1, 0, Columns.Length);
             Columns[currentColumn].SetActive(!Columns[currentColumn].activeInHierarchy);
+
+            Debug.Log("current column 2 returning: " + currentColumn);
+            currentColumn2 = Mathf.Clamp(currentColumn2 - 1, 0, Columns.Length);
+            Columns2[currentColumn2].SetActive(!Columns2[currentColumn2].activeInHierarchy);
 
             if (currentColumn == 0)
             {
