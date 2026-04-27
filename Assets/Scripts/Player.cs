@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -8,7 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] int jumpForce = 10;
     [SerializeField] int jumpCount = 2;
     int maxJumpCount;
-    bool onGround;
+
+    public Transform GroundCheckPos;
+    public Vector2 GroundCheckSize = new Vector2(0.5f, 0.05f);
+    public LayerMask GroundLayer;
+
+    public float BaseGravity = 2f;
+    public float MaxFallSpeed = 18f;
+    public float FallSpeedMultiplier = 2f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,29 +28,73 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector2.right * horizontalInput * speed * Time.deltaTime);
-        
-        if (Input.GetKeyDown(KeyCode.Space) & onGround)
+        //if (onGround && !Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    doubleJump = false;
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    if (onGround || doubleJump)
+        //    {
+        //        var currentVelocity = rb.linearVelocity;
+        //        rb.linearVelocity = new Vector2(currentVelocity.x, jumpForce);
+        //        jumpCount--;
+
+        //        doubleJump = !doubleJump;
+        //    }
+        //}
+
+        if (isGrounded() || jumpCount != 0)
         {
-            Vector2 currentVelocity = rb.velocity;
-            rb.velocity = new Vector2(currentVelocity.x, jumpForce);
-            jumpCount--;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                jumpCount--;
+            }
         }
 
-        if (jumpCount <= 0)
-        {
-            jumpCount = 0;
-            onGround = false;
-        }
+        //if (!isGrounded() & jumpCount == maxJumpCount)
+        //{
+        //    jumpCount = 1;
+        //}
+    }
+    private void FixedUpdate()
+    {
+        var horizontalInput = Input.GetAxis("Horizontal");
+        transform.Translate(Vector2.right * horizontalInput * speed * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    private bool isGrounded()
+    {
+        if (Physics2D.OverlapBox(GroundCheckPos.position, GroundCheckSize, 0, GroundLayer))
         {
             jumpCount = maxJumpCount;
-            onGround = true;
+            return true;
         }
+        return false;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (!isGrounded()) //stopping effector from applying force when jumping
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(GroundCheckPos.position, GroundCheckSize);
     }
 }

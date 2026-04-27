@@ -12,7 +12,7 @@ public class Refresh : MonoBehaviour
     public GameObject[] Columns2;
     public TextMeshProUGUI RefreshCountText;
     Coroutine refreshCoroutine;
-    bool hasRefreshed;
+    public bool HasRefreshed;
     int currentColumn;
     int currentColumn2;
 
@@ -46,8 +46,8 @@ public class Refresh : MonoBehaviour
         {
            RefreshCount--;
            RefreshCountText.text = RefreshCount.ToString();
-           hasRefreshed = !hasRefreshed;
-           Debug.Log("hasRefreshed" + hasRefreshed);
+           HasRefreshed = !HasRefreshed;
+           Debug.Log("hasRefreshed" + HasRefreshed);
            
            if (refreshCoroutine != null)
            {
@@ -62,7 +62,7 @@ public class Refresh : MonoBehaviour
     {
         while (currentColumn < Columns.Length - 1)
         {
-            if (hasRefreshed)
+            if (HasRefreshed)
             {
                 Columns[currentColumn].SetActive(!Columns[currentColumn].activeInHierarchy);
                 Debug.Log("current column: " + currentColumn);
@@ -107,7 +107,7 @@ public class Refresh : MonoBehaviour
             yield return new WaitForSeconds(RefreshDelay);
         }
 
-        while (currentColumn > -1 & !hasRefreshed)
+        while (currentColumn > -1 & !HasRefreshed)
         {
             Debug.Log("current column returning: " + currentColumn);
             currentColumn = Mathf.Clamp(currentColumn - 1, 0, Columns.Length);
