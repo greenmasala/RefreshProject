@@ -6,11 +6,13 @@ public class RefreshPlatforms : MonoBehaviour
     Refresh refreshRef;
     public Transform[] MovePoints;
     public int MoveSpeed = 5;
+    Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         refreshRef = FindFirstObjectByType<Refresh>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -20,7 +22,8 @@ public class RefreshPlatforms : MonoBehaviour
         {
             if (transform.position != MovePoints[1].position)
             {
-                transform.position = Vector3.MoveTowards(transform.position, MovePoints[1].position, MoveSpeed * Time.deltaTime);
+                rb.MovePosition(MovePoints[1].position * MoveSpeed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, MovePoints[1].position, MoveSpeed * Time.deltaTime);
             }
         }
 
@@ -28,7 +31,8 @@ public class RefreshPlatforms : MonoBehaviour
         {
             if (transform.position != MovePoints[0].position)
             {
-                transform.position = Vector3.MoveTowards(transform.position, MovePoints[0].position, MoveSpeed * Time.deltaTime);
+                rb.MovePosition(MovePoints[0].position * MoveSpeed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, MovePoints[0].position, MoveSpeed * Time.deltaTime);
                 Debug.Log("running");
             }
         }

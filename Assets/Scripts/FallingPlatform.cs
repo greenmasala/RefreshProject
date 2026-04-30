@@ -4,7 +4,7 @@ using UnityEngine;
 public class FallingPlatform : MonoBehaviour
 {
     public float FallDelay = 1f;
-    public float DestroyDelay = 5f;
+    public float DestroyDelay = 2f;
     float delaySequence;
 
     Rigidbody2D rb;
@@ -27,13 +27,13 @@ public class FallingPlatform : MonoBehaviour
 
     private IEnumerator Fall()
     {
-        yield return new WaitForSeconds(FallDelay);
+        yield return new WaitForSeconds(delaySequence);
         color.color = Color.indianRed;
-        yield return new WaitForSeconds(FallDelay);
+        yield return new WaitForSeconds(delaySequence);
         color.color = Color.orangeRed;
-        yield return new WaitForSeconds(FallDelay);
+        yield return new WaitForSeconds(delaySequence);
         color.color = Color.red;
-        yield return new WaitForSeconds(FallDelay);
+        yield return new WaitForSeconds(delaySequence);
         rb.bodyType = RigidbodyType2D.Dynamic;
         Destroy(gameObject, DestroyDelay);
     }
