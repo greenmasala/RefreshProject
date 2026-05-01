@@ -34,7 +34,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(rb.linearVelocity);
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    rb.velocity = Vector2.up * jumpForce;
+        //}
+
+        //Debug.Log(rb.linearVelocity);
 
         if (isGrounded())
         {
@@ -51,6 +56,11 @@ public class Player : MonoBehaviour
             jumpBufferCounter = jumpBufferTime;
             //isJumping = true;
             //jumpCount--;
+            if (coyoteTimeCounter < 0 & jumpCount > 0)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                jumpCount = 0;
+            }
         }
         else
         {
@@ -78,6 +88,7 @@ public class Player : MonoBehaviour
         //    isJumping = false;
         //    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         //}
+
         if (jumpBufferCounter > 0f) //could be better, if you have time come revisit //moving while jumping increases jumpheight
         {
             if (coyoteTimeCounter > 0f && !isJumping)
@@ -90,7 +101,7 @@ public class Player : MonoBehaviour
             }
             else if (isJumping)
             {
-                 if (jumpCount > 0)
+                if (jumpCount > 0)
                 {
                     jumpCount--;
                     rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -101,7 +112,7 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        var horizontalInput = Input.GetAxis("Horizontal");
+        var horizontalInput = Input.GetAxisRaw("Horizontal");
         //float targetSpeed = horizontalInput * speed;
 
         //var runAccelAmount = (50 * runAcceleration) / runMaxSpeed;
@@ -111,7 +122,8 @@ public class Player : MonoBehaviour
         //float speedDif = targetSpeed - rb.linearVelocity.x;
         //float movement = speedDif * accelRate;
         //rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
-        transform.Translate(Vector2.right * horizontalInput * speed * Time.deltaTime);
+        rb.linearVelocity = new Vector2(horizontalInput * speed, rb.linearVelocity.y);
+        //transform.Translate(Vector2.right * horizontalInput * speed * Time.deltaTime);
 
         if (rb.linearVelocity.y < 0)
         {
