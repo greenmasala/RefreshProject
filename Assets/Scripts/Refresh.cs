@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Refresh : MonoBehaviour
@@ -45,8 +46,8 @@ public class Refresh : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) & RefreshCount > 0)
         {
            RefreshCount--;
-           RefreshCountText.text = RefreshCount.ToString();
            HasRefreshed = !HasRefreshed;
+           RefreshCountText.text = RefreshCount.ToString();
            Debug.Log("hasRefreshed" + HasRefreshed);
            
            if (refreshCoroutine != null)
@@ -129,5 +130,11 @@ public class Refresh : MonoBehaviour
 
         Debug.Log("done stopped at: " + currentColumn);
         yield break;
+    }
+
+    public void ReplenishRefresh()
+    {
+        RefreshCount++;
+        RefreshCountText.text = RefreshCount.ToString();
     }
 }
