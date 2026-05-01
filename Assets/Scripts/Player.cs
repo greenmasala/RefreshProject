@@ -34,7 +34,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(jumpCount);
+        Debug.Log(rb.linearVelocity);
+
         if (isGrounded())
         {
             coyoteTimeCounter = coyoteTime;
@@ -49,7 +50,6 @@ public class Player : MonoBehaviour
         {
             jumpBufferCounter = jumpBufferTime;
             //isJumping = true;
-            Debug.Log(isJumping);
             //jumpCount--;
         }
         else
@@ -78,11 +78,10 @@ public class Player : MonoBehaviour
         //    isJumping = false;
         //    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         //}
-        if (jumpBufferCounter > 0f) //could be better, if you have time come revisit
+        if (jumpBufferCounter > 0f) //could be better, if you have time come revisit //moving while jumping increases jumpheight
         {
             if (coyoteTimeCounter > 0f && !isJumping)
             {
-                Debug.Log("jump");
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 isJumping = true;
 
@@ -93,7 +92,6 @@ public class Player : MonoBehaviour
             {
                  if (jumpCount > 0)
                 {
-                    Debug.Log("double jump");
                     jumpCount--;
                     rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                     jumpBufferCounter = 0f;
