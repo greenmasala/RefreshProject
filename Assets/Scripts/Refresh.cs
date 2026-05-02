@@ -14,8 +14,11 @@ public class Refresh : MonoBehaviour
     public TextMeshProUGUI RefreshCountText;
     Coroutine refreshCoroutine;
     public bool HasRefreshed;
+    public float InitialRefreshDelay = 0.35f;
     int currentColumn;
     int currentColumn2;
+
+    public Animator RefreshUI;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +50,9 @@ public class Refresh : MonoBehaviour
         {
            RefreshCount--;
            HasRefreshed = !HasRefreshed;
+
+           RefreshUI.SetBool("HasRefreshed", HasRefreshed);
+
            RefreshCountText.text = RefreshCount.ToString();
            Debug.Log("hasRefreshed" + HasRefreshed);
            
@@ -61,7 +67,8 @@ public class Refresh : MonoBehaviour
 
     IEnumerator Refreshing()
     {
-        while (currentColumn < Columns.Length - 1)
+        yield return new WaitForSeconds(InitialRefreshDelay);
+        while (currentColumn < Columns.Length)
         {
             if (HasRefreshed)
             {
