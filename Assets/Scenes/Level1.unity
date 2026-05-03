@@ -3642,6 +3642,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  RefreshCount: 5
 --- !u!61 &1045255788
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6515,6 +6516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2137704147}
   - component: {fileID: 2137704148}
+  - component: {fileID: 2137704149}
   m_Layer: 0
   m_Name: RefreshManager
   m_TagString: Untagged
@@ -6557,6 +6559,18 @@ MonoBehaviour:
   HasRefreshed: 0
   InitialRefreshDelay: 0.35
   RefreshUI: {fileID: 102990894}
+--- !u!114 &2137704149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137704146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0293da86d06252447b39fb2a533605eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyDontDestroy
 --- !u!222 &40874889911124836
 CanvasRenderer:
   m_ObjectHideFlags: 0

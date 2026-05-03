@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public Vector2 GroundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask GroundLayer;
 
+    public int RefreshCount = 5;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -23,6 +23,7 @@ public class Refresh : MonoBehaviour
     public static Refresh Instance { get; private set; }
     private void Awake()
     {
+        RefreshCount = FindFirstObjectByType<Player>().RefreshCount;
         RefreshCountText = PersistentOverlay.Instance.GetComponentInChildren<TextMeshProUGUI>();
         if (Instance == null)
         {
