@@ -1,10 +1,10 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject PauseMenu;
-    public GameObject SettingsMenu;
     public GameObject WinScreen;
 
     int levelID;
@@ -12,8 +12,29 @@ public class GameManager : MonoBehaviour
     bool win;
     bool paused;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static GameManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Debug.Log(PauseMenu);
+        levelID = SceneManager.GetActiveScene().buildIndex;
+        nextLevelID = levelID + 1;
+        Debug.Log("LevelID" + levelID);
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(Instance.gameObject);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void Start()
     {
         levelID = SceneManager.GetActiveScene().buildIndex;
         nextLevelID = levelID + 1;
@@ -36,7 +57,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Restart();
+            //Restart();
+            NextLevel();
         }
     }
 
@@ -53,7 +75,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         PauseMenu.gameObject.SetActive(false);
         paused = false;
-        SettingsMenu.gameObject.SetActive(false);
     }
     public void Restart()
     {
@@ -65,12 +86,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         LoadLevel(nextLevelID);
-    }
-
-    public void ReturnToMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1f;
     }
 
     void Win()
@@ -85,14 +100,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelID);
     }
 
-    public void Settings()
-    {
-        SettingsMenu.gameObject.SetActive(!SettingsMenu.activeInHierarchy);
-        PauseMenu.gameObject.SetActive(!PauseMenu.activeInHierarchy);
-    }
-
-    //public void OpenCredits()
+    //public void Settings()
     //{
-    //    Credits.gameObject.SetActive(true);
+    //    SettingsMenu.gameObject.SetActive(!SettingsMenu.activeInHierarchy);
+    //    PauseMenu.gameObject.SetActive(!PauseMenu.activeInHierarchy);
     //}
+
+    ////public void OpenCredits()
+    ////{
+    ////    Credits.gameObject.SetActive(true);
+    ////}
 }

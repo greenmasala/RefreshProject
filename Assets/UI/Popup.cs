@@ -1,10 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 
-public class Pause : MonoBehaviour
+public class Popup : MonoBehaviour
 {
     RectTransform position;
 
@@ -17,6 +14,6 @@ public class Pause : MonoBehaviour
     private void OnEnable()
     {
         position.transform.localPosition = new Vector2(0f, -100f);
-        position.DOAnchorPos(new Vector2(0f, 0f), 0.3f);
+        position.DOAnchorPos(new Vector2(0f, 0f), 0.3f).SetUpdate(true);
     }
 }

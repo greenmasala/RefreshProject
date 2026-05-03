@@ -9,17 +9,29 @@ public class Transition : MonoBehaviour
     public RectTransform TransitionImage;
     public RectTransform Text;
     public TextMeshProUGUI LevelText;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    Sequence sequence;
+
+    private void OnEnable() => SceneManager.activeSceneChanged += SceneChanged;
+    private void OnDisable() => SceneManager.activeSceneChanged -= SceneChanged;
+
+    private void SceneChanged(Scene oldScene, Scene newScene)
     {
+        if (oldScene.buildIndex != newScene.buildIndex)
+        {
+            RunTransition();
+        }
+    }
+    void RunTransition()
+    {
+        sequence.Restart();
         LevelText.text = $"LEVEL_{SceneManager.GetActiveScene().buildIndex}";
         LevelText.maxVisibleCharacters = 0;
-        Sequence s = DOTween.Sequence();
-        s.Append(TransitionImage.DOScaleY(0.15f, 0.6f));
-        s.InsertCallback(0.4f, () => StartCoroutine(TypeText()));
-        s.AppendInterval(0.6f);
-        s.Append(TransitionImage.DOScaleY(0f, 0.6f));
-        s.Join(Text.DOScaleY(0, 0.2f));
+        sequence = DOTween.Sequence();
+        sequence.Append(TransitionImage.DOScaleY(0.15f, 0.6f));
+        sequence.InsertCallback(0.4f, () => StartCoroutine(TypeText()));
+        sequence.AppendInterval(0.6f);
+        sequence.Append(TransitionImage.DOScaleY(0f, 0.6f));
+        sequence.Join(Text.DOScaleY(0, 0.2f));
     }
 
     IEnumerator TypeText()

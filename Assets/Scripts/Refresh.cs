@@ -20,6 +20,23 @@ public class Refresh : MonoBehaviour
 
     public Animator RefreshUI;
 
+    public static Refresh Instance { get; private set; }
+    private void Awake()
+    {
+        RefreshCountText = PersistentOverlay.Instance.GetComponentInChildren<TextMeshProUGUI>();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+        }
+        else if (Instance != this)
+        {
+            Destroy(Instance.gameObject);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
