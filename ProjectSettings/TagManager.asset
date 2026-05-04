@@ -7,6 +7,8 @@ TagManager:
   - Column
   - Column2
   - Obstacle
+  - Layout1
+  - Layout2
   layers:
   - Default
   - TransparentFX

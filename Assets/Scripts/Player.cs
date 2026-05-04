@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     public Transform GroundCheckPos;
     public Vector2 GroundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask GroundLayer;
+    bool facingRight;
+    Animator playerAnim;
 
     public int RefreshCount = 5;
 
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     {
         maxJumpCount = jumpCount;
         rb = GetComponent<Rigidbody2D>();
+        playerAnim = GetComponent<Animator>();  
     }
 
     // Update is called once per frame
@@ -93,6 +96,15 @@ public class Player : MonoBehaviour
         //    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         //}
 
+        if (isJumping)
+        {
+            playerAnim.SetBool("IsJumping", true);
+        }
+        else if (!isJumping)
+        {
+            playerAnim.SetBool("IsJumping", false);
+        }
+
         if (jumpBufferCounter > 0f) //could be better, if you have time come revisit //moving while jumping increases jumpheight
         {
             if (coyoteTimeCounter > 0f && !isJumping)
@@ -129,6 +141,24 @@ public class Player : MonoBehaviour
         rb.linearVelocity = new Vector2(horizontalInput * speed, rb.linearVelocity.y);
         //transform.Translate(Vector2.right * horizontalInput * speed * Time.deltaTime);
 
+        if (horizontalInput != 0)
+        {
+            playerAnim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            playerAnim.SetBool("IsWalking", false);
+        }
+
+        if (horizontalInput < 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (horizontalInput > 0 && facingRight)
+        {
+            Flip();
+        }
+
         if (rb.linearVelocity.y < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * 1.25f * Time.deltaTime;
@@ -161,7 +191,13 @@ public class Player : MonoBehaviour
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
     }
-
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

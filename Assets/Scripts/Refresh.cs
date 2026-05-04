@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using DG.Tweening;
 
 public class Refresh : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Refresh : MonoBehaviour
     public int RefreshCount;
     public GameObject[] Columns;
     public GameObject[] Columns2;
+    public Tilemap Layout1;
+    public Tilemap Layout2;
     public TextMeshProUGUI RefreshCountText;
     Coroutine refreshCoroutine;
     public bool HasRefreshed;
@@ -18,6 +21,7 @@ public class Refresh : MonoBehaviour
     int currentColumn;
     int currentColumn2;
 
+    Coroutine CoFadeInLayout;
     public Animator RefreshUI;
 
     public static Refresh Instance { get; private set; }
@@ -41,6 +45,9 @@ public class Refresh : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Layout1 = GameObject.FindGameObjectWithTag("Layout1").GetComponent<Tilemap>();
+        Layout2 = GameObject.FindGameObjectWithTag("Layout2").GetComponent<Tilemap>();
+
         Columns = GameObject.FindGameObjectsWithTag("Column").OrderByDescending(o => 
         {
             var numberPart = new string(o.name.Where(char.IsDigit).ToArray());
@@ -80,6 +87,46 @@ public class Refresh : MonoBehaviour
                Debug.Log("Stopped midway");
            }
            refreshCoroutine = StartCoroutine(Refreshing());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (HasRefreshed)
+            {
+                if (CoFadeInLayout != null)
+                {
+                    StopCoroutine(CoFadeInLayout);
+                }
+                CoFadeInLayout = StartCoroutine(FadeInLayout(0.3f, 0.5f, Layout1));
+            }
+            else
+            {
+                if (CoFadeInLayout != null)
+                {
+                    StopCoroutine(CoFadeInLayout);
+                }
+                CoFadeInLayout = StartCoroutine(FadeInLayout(0.3f, 0.5f, Layout2));
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            if (HasRefreshed)
+            {
+                if (CoFadeInLayout != null)
+                {
+                    StopCoroutine(CoFadeInLayout);
+                }
+                CoFadeInLayout = StartCoroutine(FadeInLayout(0.3f, 0f, Layout1));
+            }
+            else
+            {
+                if (CoFadeInLayout != null)
+                {
+                    StopCoroutine(CoFadeInLayout);
+                }
+                CoFadeInLayout = StartCoroutine(FadeInLayout(0.3f, 0f, Layout2));
+            }
         }
     }
 
@@ -161,5 +208,21 @@ public class Refresh : MonoBehaviour
     {
         RefreshCount++;
         RefreshCountText.text = RefreshCount.ToString();
+    }
+
+    IEnumerator FadeInLayout(float duration, float endAlpha, Tilemap layout)
+    {
+        Color startingColor = layout.color;
+        Color c = layout.color;
+        c.a = endAlpha;
+        float elapsed = 0;
+ 
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            layout.color = Color.Lerp(startingColor, c, elapsed / duration);
+            yield return null;
+        }
+        layout.color = c;
     }
 }
