@@ -1,0 +1,338 @@
+fileFormatVersion: 2
+guid: 3d096d15765e24b4fb0eb8b90562010f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2334714655908623875
+    second: GreenFrogJump_0
+  - first:
+      213: -4639858530868865249
+    second: GreenFrogJump_1
+  - first:
+      213: -3487307522253914314
+    second: GreenFrogJump_2
+  - first:
+      213: 5679990629503693733
+    second: GreenFrogJump_3
+  - first:
+      213: 5372707619742567169
+    second: GreenFrogJump_4
+  - first:
+      213: 9145496257885098940
+    second: GreenFrogJump_5
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GreenFrogJump_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 20, y: -32}
+        - {x: 12, y: -28}
+        - {x: 8, y: -28}
+        - {x: 13, y: -18}
+        - {x: 13, y: -12}
+        - {x: -1, y: -8}
+        - {x: -9, y: -9}
+        - {x: -14, y: -9}
+        - {x: -17, y: -12}
+        - {x: -17, y: -17}
+        - {x: -18, y: -19}
+        - {x: -14, y: -37}
+        - {x: 18, y: -37}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 306f4551c92966020800000000000000
+      internalID: 2334714655908623875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFrogJump_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 19, y: -27}
+        - {x: 16, y: -26}
+        - {x: 11, y: -25}
+        - {x: 11, y: -20}
+        - {x: 11, y: -14}
+        - {x: -3, y: -10}
+        - {x: -11, y: -11}
+        - {x: -16, y: -11}
+        - {x: -19, y: -14}
+        - {x: -19, y: -19}
+        - {x: -18, y: -30}
+        - {x: -15, y: -37}
+        - {x: -1, y: -37}
+        - {x: 8, y: -32}
+        - {x: 17, y: -33}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f17de7bcf39eb9fb0800000000000000
+      internalID: -4639858530868865249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFrogJump_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -5, y: -24}
+        - {x: -4, y: -16}
+        - {x: 0, y: -20}
+        - {x: 4, y: -18}
+        - {x: 8, y: -18}
+        - {x: 9, y: -19}
+        - {x: 13, y: -19}
+        - {x: 16, y: -14}
+        - {x: 13, y: -12}
+        - {x: 9, y: -11}
+        - {x: 5, y: -9}
+        - {x: 9, y: -5}
+        - {x: 9, y: 1}
+        - {x: 6.7247314, y: 3.2752686}
+        - {x: 1, y: 6}
+        - {x: -18, y: 6}
+        - {x: -21, y: 1}
+        - {x: -25, y: -10}
+        - {x: -14, y: -10}
+        - {x: -15, y: -13}
+        - {x: -16, y: -17}
+        - {x: -22, y: -19}
+        - {x: -22, y: -26}
+        - {x: -8, y: -26}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63ff189f8489a9fc0800000000000000
+      internalID: -3487307522253914314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFrogJump_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 9, y: -5}
+        - {x: 19, y: -6}
+        - {x: 22, y: -1}
+        - {x: 17, y: 2}
+        - {x: 10, y: 4}
+        - {x: 10, y: 15}
+        - {x: 3, y: 21}
+        - {x: -11, y: 21}
+        - {x: -15, y: 13}
+        - {x: -16, y: 0}
+        - {x: -10, y: -2}
+        - {x: -5, y: -7}
+        - {x: -12, y: -6}
+        - {x: -17, y: -9}
+        - {x: -17, y: -15}
+        - {x: -3, y: -15}
+        - {x: 4, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a37d17326163de40800000000000000
+      internalID: 5679990629503693733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFrogJump_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 21, y: -34}
+        - {x: 19, y: -31}
+        - {x: 14, y: -31}
+        - {x: 13, y: -26}
+        - {x: 17, y: -20}
+        - {x: 16, y: -16}
+        - {x: 9, y: -12}
+        - {x: 2, y: -12}
+        - {x: -10, y: -12}
+        - {x: -14, y: -18}
+        - {x: -12, y: -23}
+        - {x: -12, y: -34}
+        - {x: -7, y: -32}
+        - {x: -2, y: -36}
+        - {x: 1, y: -33}
+        - {x: 3, y: -38}
+        - {x: 19, y: -38}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b4ac44d11bf8a40800000000000000
+      internalID: 5372707619742567169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6f28510b2cb436449b2aa1b5e5a2b4c0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":80.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      GreenFrogJump_0: 2334714655908623875
+      GreenFrogJump_1: -4639858530868865249
+      GreenFrogJump_2: -3487307522253914314
+      GreenFrogJump_3: 5679990629503693733
+      GreenFrogJump_4: 5372707619742567169
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
