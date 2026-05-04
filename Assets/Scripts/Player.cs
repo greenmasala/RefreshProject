@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public float jumpBufferTime = 0.2f;
     public float jumpBufferCounter;
 
+    public SpriteRenderer spriteRenderer;
+
     public bool isJumping;
     public Transform GroundCheckPos;
     public Vector2 GroundCheckSize = new Vector2(0.5f, 0.05f);
